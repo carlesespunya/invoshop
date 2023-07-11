@@ -9,8 +9,6 @@
   let totalItems: number = cart.reduce((total, item) => total + item.quantity, 0)
   let totalPrice: number = cart.reduce((total, item) => total + item.price, 0)
 
-  let disocunts: Discount[] = get(cartDiscounts)
-
   let checkoutPrice = 0
 
   cartItems.subscribe((newCartValue) => {
