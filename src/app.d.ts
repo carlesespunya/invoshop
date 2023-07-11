@@ -4,9 +4,21 @@ declare global {
 	namespace App {
 		// interface Error {}
 		// interface Locals {}
-		// interface PageData {}
+		interface PageData {
+      products: Product[]
+    }
 		// interface Platform {}
 	}
 }
 
-export {};
+interface Product {
+  code: string
+  name: string
+  price: number
+}
+
+interface CartItem {
+  productCode: string
+  quantity: number
+  price: number
+}
