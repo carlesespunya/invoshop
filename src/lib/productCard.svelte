@@ -62,7 +62,7 @@
   }
 
   td{
-    padding-right: 80px;
+    padding-right: 70px;
     padding-top: 32px;
   }
 

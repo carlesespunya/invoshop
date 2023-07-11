@@ -43,8 +43,3 @@ export const removeFromCart = (product: Product) => {
     return updatedItems
   })
 }
-
-export const getTotalCart = (): number => {
-  const items: CartItem[] = get(cartItems)
-  return items.reduce((total, item) => total + item.price, 0)
-}

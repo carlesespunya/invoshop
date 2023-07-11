@@ -18,6 +18,25 @@ export const load = (() => {
           name: "Cap",
           price: 500
         }
+      ],
+      discountRules: [
+        {
+          id: "0",
+          name: "x3 Shirt offer",
+          productCode: "TSHIRT",
+          condition: (quantity: number) : boolean => quantity >= 3,
+          apply: (price: number) : number => price * 0.25
+        },
+        {
+          id: "1",
+          name: "2x1 Mug offer",
+          productCode: "MUG",
+          condition: (quantity: number ) : boolean=> quantity >= 3,
+          apply: (price: number, quantity: number) : number => {
+            const freeItems = Math.floor(quantity / 3);
+            return (freeItems / quantity) * price;
+          }
+        }
       ]
     }
 }) satisfies PageLoad;
