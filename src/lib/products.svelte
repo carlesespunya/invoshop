@@ -15,7 +15,7 @@
         <th>TOTAL</th>
       </tr>
 
-      {#each products as product}
+      {#each products as product (product.code)}
         <ProductCard {product}/>
       {/each}
     </table>

@@ -5,7 +5,7 @@
 
 <div class="pt-6 pb-2">
   <h3 class="mb-4">DISCOUNTS</h3>
-  {#each $cartDiscounts as discount}
+  {#each $cartDiscounts as discount (discount.discountRuleId)}
     {#if discount.value > 0}
       <div class="flex justify-between mb-5">
         <p>{getDicountRule(discount.discountRuleId)}</p>
