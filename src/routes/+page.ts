@@ -22,14 +22,14 @@ export const load = (() => {
       discountRules: [
         {
           id: "0",
-          name: "x3 Shirt offer",
+          name: "25% Shirt offer",
           productCode: "TSHIRT",
           condition: (quantity: number) : boolean => quantity >= 3,
           apply: (price: number) : number => price * 0.25
         },
         {
           id: "1",
-          name: "2x1 Mug offer",
+          name: "3x2 Mug offer",
           productCode: "MUG",
           condition: (quantity: number ) : boolean=> quantity >= 3,
           apply: (price: number, quantity: number) : number => {

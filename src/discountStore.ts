@@ -3,11 +3,10 @@ import { writable, get } from "svelte/store";
 export const discountRules = writable<DiscountRule[]>([]);
 export const cartDiscounts = writable<Discount[]>([]);
 
-export const applyDiscounts = (discountRules: DiscountRule[], cartItems: CartItem[]) => {
+export const applyDiscounts = (cartItems: CartItem[]) => {
   cartItems.forEach((item: CartItem) => {
     const appliedDiscounts = new Set();
-
-    const matchingRule = discountRules.find((rule: DiscountRule) => rule.productCode === item.productCode && !appliedDiscounts.has(rule));
+    const matchingRule = get(discountRules).find((rule: DiscountRule) => rule.productCode === item.productCode && !appliedDiscounts.has(rule));
 
     if (matchingRule) {
       applyDiscount(matchingRule, item);

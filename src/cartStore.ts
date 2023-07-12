@@ -1,10 +1,10 @@
 import { writable, get } from "svelte/store";
-import { applyDiscounts, discountRules } from "./discountStore";
+import { applyDiscounts } from "./discountStore";
 
 export const cartItems = writable<CartItem[]>([]);
 
 cartItems.subscribe((newCartValue) => {
-  applyDiscounts(get(discountRules), newCartValue)
+  applyDiscounts(newCartValue)
 })
 
 export const addToCart = (product: Product) => {
