@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { cartItems, addToCart, removeFromCart } from "../cartStore";
   import PriceFormatter from "./priceFormatter.svelte";
+  import { cartItems, addToCart, removeFromCart } from "../cartStore";
 
   export let product: Product
 

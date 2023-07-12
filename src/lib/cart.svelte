@@ -1,9 +1,9 @@
 <script lang="ts">
+  import CartDiscounts from "./cartDiscounts.svelte";
+  import PriceFormatter from "./priceFormatter.svelte";
   import { get } from "svelte/store";
   import { cartItems } from "../cartStore";
   import { cartDiscounts } from "../discountStore";
-  import CartDiscounts from "./cartDiscounts.svelte";
-  import PriceFormatter from "./priceFormatter.svelte";
 
   let checkoutPrice = 0
 

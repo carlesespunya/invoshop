@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { cartDiscounts, getDicountRule } from "../discountStore";
   import PriceFormatter from "./priceFormatter.svelte";
+  import { cartDiscounts, getDicountRule } from "../discountStore";
 </script>
 
 <div class="pt-6 pb-2">

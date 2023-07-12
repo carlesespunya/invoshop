@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Products from "$lib/products.svelte";
-  import { discountRules } from "../discountStore";
+  import Products from "../lib/products.svelte";
   import Cart from "../lib/cart.svelte";
+  import { discountRules } from "../discountStore";
   import type { PageData } from "./$types";
 
   export let data: PageData;
