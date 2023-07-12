@@ -4,7 +4,7 @@
   export let products: Product[]
 </script>
 
-<div class="w-2/3 py-10 pr-8 pl-14 grid divide-y">
+<div class="w-2/3 py-10 pr-8 pl-14 divide-y">
   <h1 class="mb-4">Products</h1>
   <section class="pt-8">
     <table class="pt-8">
@@ -16,9 +16,7 @@
       </tr>
 
       {#each products as product}
-        <tr>
-          <ProductCard {product}/>
-        </tr>
+        <ProductCard {product}/>
       {/each}
     </table>
   </section>
@@ -32,9 +30,5 @@
     font-style: normal;
     font-weight: 400;
     line-height: 10px;
-  }
-
-  tr{
-    gap: 86px;
   }
 </style>

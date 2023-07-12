@@ -1,6 +1,8 @@
 <script lang="ts">
   import { get } from "svelte/store";
   import { cartItems, addToCart, removeFromCart } from "../cartStore";
+  import PriceFormatter from "./priceFormatter.svelte";
+
   export let product: Product
 
   let cart: CartItem[] = get(cartItems)
@@ -14,30 +16,32 @@
   });
 </script>
 
-<td>
-  <div class="flex items-center gap-4">
-    <img src="/images/{product.code}_thumb.png" alt={product.code} />
-    <div>
-      <h2>{product.name}</h2>
-      <p><small>Product code {product.code}</small></p>
+<tr>
+  <td>
+    <div class="flex items-center gap-4">
+      <img src="/images/{product.code}_thumb.png" alt={product.code} />
+      <div>
+        <h2>{product.name}</h2>
+        <p><small>Product code {product.code}</small></p>
+      </div>
     </div>
-  </div>
-</td>
+  </td>
 
 
-<td class="flex">
-  <button on:click={() => removeFromCart(product)}>-</button>
-  <p class="py-2 px-4 m-2 border rounded-sm">{cartProduct?.quantity || 0}</p>
-  <button on:click={() => addToCart(product)}>+</button>
-</td>
+  <td class="flex">
+    <button on:click={() => removeFromCart(product)}>-</button>
+    <p class="py-2 px-4 m-2 border rounded-sm">{cartProduct?.quantity || 0}</p>
+    <button on:click={() => addToCart(product)}>+</button>
+  </td>
 
-<td>
-  {product.price / 100} €
-</td>
+  <td>
+    <PriceFormatter price={product.price}/>
+  </td>
 
-<td>
-  {cartProduct?.price / 100 || 0} €
-</td>
+  <td>
+    <PriceFormatter price={cartProduct?.price || 0}/>
+  </td>
+</tr>
 
 <style>
   h2{
@@ -62,7 +66,7 @@
   }
 
   td{
-    padding-right: 70px;
+    padding-right: 62px;
     padding-top: 32px;
   }
 

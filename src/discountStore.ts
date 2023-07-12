@@ -1,5 +1,6 @@
 import { writable, get } from "svelte/store";
 
+export const discountRules = writable<DiscountRule[]>([]);
 export const cartDiscounts = writable<Discount[]>([]);
 
 export const applyDiscounts = (discountRules: DiscountRule[], cartItems: CartItem[]) => {
@@ -33,7 +34,7 @@ const applyDiscount = (rule: DiscountRule, item: CartItem) => {
   })
 }
 
-export const getTotalDiscount = (): number => {
-  const discounts: Discount[] = get(cartDiscounts)
-  return discounts.reduce((total, discount) => total + discount.value, 0)
+export const getDicountRule = (discountRuleId: string) : string => {
+  const rule = get(discountRules).find(rule => rule.id === discountRuleId);
+  return rule ? rule.name : '';
 }
