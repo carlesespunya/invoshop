@@ -1,6 +1,6 @@
 <script lang="ts">
   import PriceFormatter from "./priceFormatter.svelte";
-  import { cartDiscounts, getDicountRule } from "../discountStore";
+  import { cartDiscounts, getDicountRuleName } from "../discountStore";
 </script>
 
 <div class="pt-6 pb-2">
@@ -8,7 +8,7 @@
   {#each $cartDiscounts as discount (discount.discountRuleId)}
     {#if discount.value > 0}
       <div class="flex justify-between mb-5">
-        <p>{getDicountRule(discount.discountRuleId)}</p>
+        <p>{getDicountRuleName(discount.discountRuleId)}</p>
         <p><PriceFormatter price={-discount.value}/></p>
       </div>
     {/if}

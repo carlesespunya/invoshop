@@ -38,7 +38,7 @@ const applyDiscount = (rule: DiscountRule, item: CartItem) => {
   })
 }
 
-export const getDicountRule = (discountRuleId: string) : string => {
+export const getDicountRuleName = (discountRuleId: string) : string => {
   const rule = get(discountRules).find(rule => rule.id === discountRuleId);
   return rule ? rule.name : '';
 }
