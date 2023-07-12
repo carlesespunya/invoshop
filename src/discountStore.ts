@@ -4,11 +4,16 @@ export const discountRules = writable<DiscountRule[]>([]);
 export const cartDiscounts = writable<Discount[]>([]);
 
 export const applyDiscounts = (discountRules: DiscountRule[], cartItems: CartItem[]) => {
-  discountRules.forEach((rule: DiscountRule) => {
-    cartItems.forEach((item: CartItem ) => {
-      if (rule.productCode == item.productCode) applyDiscount(rule, item)
-    })
-  })
+  cartItems.forEach((item: CartItem) => {
+    const appliedDiscounts = new Set();
+
+    const matchingRule = discountRules.find((rule: DiscountRule) => rule.productCode === item.productCode && !appliedDiscounts.has(rule));
+
+    if (matchingRule) {
+      applyDiscount(matchingRule, item);
+      appliedDiscounts.add(matchingRule);
+    }
+  });
 }
 
 const applyDiscount = (rule: DiscountRule, item: CartItem) => {
