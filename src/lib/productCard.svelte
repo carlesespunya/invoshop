@@ -1,19 +1,23 @@
 <script lang="ts">
-  import { get } from "svelte/store";
   import { cartItems, addToCart, removeFromCart } from "../cartStore";
   import PriceFormatter from "./priceFormatter.svelte";
 
   export let product: Product
 
-  let cart: CartItem[] = get(cartItems)
-  let itemsPosition: number = cart.findIndex((item) => item.productCode === product.code )
-  let cartProduct: CartItem = cart[itemsPosition]
+  const getCartProduct = (cart: CartItem[]) : CartItem => {
+    const itemsPosition: number = cart.findIndex((item) => { return item.productCode === product.code });
+    return cart[itemsPosition];
+  }
 
-  cartItems.subscribe((newCartValue) => {
-    cart = newCartValue;
-    itemsPosition = cart.findIndex((item) => { return item.productCode === product.code });
-    cartProduct = cart[itemsPosition];
-  });
+  const getCartProductValue = (cart: CartItem[], value: 'quantity' | 'price'): number => {
+    const cartProduct = getCartProduct(cart);
+
+    if (cartProduct) {
+      return value === 'quantity' ? cartProduct.quantity : cartProduct.price;
+    }
+
+    return 0;
+  };
 </script>
 
 <tr>
@@ -30,7 +34,7 @@
 
   <td class="flex">
     <button on:click={() => removeFromCart(product)}>-</button>
-    <p class="py-2 px-4 m-2 border rounded-sm">{cartProduct?.quantity || 0}</p>
+    <p class="py-2 px-4 m-2 border rounded-sm">{getCartProductValue($cartItems, 'quantity')}</p>
     <button on:click={() => addToCart(product)}>+</button>
   </td>
 
@@ -39,7 +43,7 @@
   </td>
 
   <td>
-    <PriceFormatter price={cartProduct?.price || 0}/>
+    <PriceFormatter price={getCartProductValue($cartItems, "price")}/>
   </td>
 </tr>
 

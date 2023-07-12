@@ -27,8 +27,6 @@
     text-align: left;
     color: #A6A7B3;
     font-size: 10px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 10px;
   }
 </style>

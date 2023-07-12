@@ -7,16 +7,12 @@
 
   let checkoutPrice = 0
 
-  const getTotalItems = (cart: CartItem[]) : number => {
-    return cart.reduce((total, item) => total + item.quantity, 0)
-  }
-
-  const getPrice = (cart: CartItem[]) : number => {
-    return cart.reduce((total, item) => total + item.price, 0)
-  }
+  const getTotal = (cart: CartItem[], propertyCallback: (item: CartItem) => number): number => {
+    return cart.reduce((total, item) => total + propertyCallback(item), 0);
+  };
 
   const getCheckoutPrice = () : void => {
-    checkoutPrice = getPrice(get(cartItems)) - get(cartDiscounts).reduce((total, discount) => total + discount.value, 0)
+    checkoutPrice = getTotal($cartItems, item => item.price) - get(cartDiscounts).reduce((total, discount) => total + discount.value, 0)
   }
 </script>
 
@@ -24,8 +20,8 @@
   <h1 class="mb-4">Cart</h1>
 
   <div class="flex justify-between py-8">
-    <p>{getTotalItems($cartItems)} Items</p>
-    <p><PriceFormatter price={getPrice($cartItems)}/></p>
+    <p>{getTotal($cartItems, item => item.quantity)} Items</p>
+    <p><PriceFormatter price={getTotal($cartItems, item => item.price)}/></p>
   </div>
 
   <CartDiscounts />
